@@ -22,6 +22,7 @@ const faIcons = [
   "ExchangeAlt",
   "ExclamationTriangle",
   "FileCode",
+  "FileExport",
   "FileUpload",
   "HandPaper",
   "HandPointRight",
