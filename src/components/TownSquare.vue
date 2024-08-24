@@ -301,7 +301,7 @@ export default {
 
   > li {
     position: absolute;
-    transform-origin: 100% 100%;
+    transform-origin: 0 0;
     pointer-events: none;
 
     &.mobile {
@@ -328,7 +328,7 @@ export default {
   // rotation and tooltip placement
   @for $i from 1 through $item-count {
     &:nth-child(#{$i}) {
-      transform: rotate($rot * 1deg);
+      // transform: rotate($rot * 1deg);
       @if $i - 1 <= math.div($item-count, 2) {
         // first half of players
         z-index: $item-count - $i + 1;
@@ -378,9 +378,9 @@ export default {
         z-index: $i - 1;
       }
 
-      > * {
-        transform: rotate($rot * -1deg);
-      }
+      // > * {
+      //   transform: rotate($rot * -1deg);
+      // }
 
       // animation cascade
       .life,
@@ -403,6 +403,15 @@ export default {
         .player {
           margin-bottom: -10% + 20% * math.div($x % $q, $q);
         }
+      }
+
+      // Get the X and Y positions based on the angle
+      $xPos: 30vw * sin($rot * 1deg);
+      $yPos: 30vh * cos($rot * 1deg);
+
+      .player {
+        top: $yPos;
+        left: $xPos;
       }
     }
     $rot: $rot + $angle;
