@@ -204,6 +204,10 @@
             Game State JSON
             <em><font-awesome-icon icon="file-code"/></em>
           </li>
+          <li @click="toggleModal('winner')">
+            Export Winner
+            <em><font-awesome-icon icon="file-export"/></em>
+          </li>
           <li>
             <a href="https://discord.gg/Gd7ybwWbFk" target="_blank">
               Join Discord

@@ -31,25 +31,29 @@ export default {
     Modal
   },
   computed: {
-    gamestate: function() {
-      return JSON.stringify({
-        bluffs: this.players.bluffs.map(({ id }) => id),
-        edition: this.edition.isOfficial
-          ? { id: this.edition.id }
-          : this.edition,
-        roles: this.edition.isOfficial
-          ? ""
-          : this.$store.getters.customRolesStripped,
-        fabled: this.players.fabled.map(fabled =>
-          fabled.isCustom ? fabled : { id: fabled.id }
-        ),
-        players: this.players.players.map(player => ({
-          ...player,
-          role: player.role.id || {}
-        }))
-      });
+    gamestate: function () {
+      return JSON.stringify(
+        {
+          bluffs: this.players.bluffs.map(({ id }) => id),
+          edition: this.edition.isOfficial
+            ? { id: this.edition.id }
+            : this.edition,
+          roles: this.edition.isOfficial
+            ? ""
+            : this.$store.getters.customRolesStripped,
+          fabled: this.players.fabled.map((fabled) =>
+            fabled.isCustom ? fabled : { id: fabled.id },
+          ),
+          players: this.players.players.map((player) => ({
+            ...player,
+            role: player.role.id || {},
+          })),
+        },
+        null,
+        2,
+      );
     },
-    ...mapState(["modals", "players", "edition", "roles", "session"])
+    ...mapState(["modals", "players", "edition", "roles", "session"]),
   },
   data() {
     return {

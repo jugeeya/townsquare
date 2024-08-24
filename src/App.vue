@@ -35,6 +35,7 @@
     <NightOrderModal />
     <VoteHistoryModal />
     <GameStateModal />
+    <WinnerModal />
     <Gradients />
     <span id="version">v{{ version }}</span>
   </div>
@@ -56,6 +57,7 @@ import NightOrderModal from "./components/modals/NightOrderModal";
 import FabledModal from "@/components/modals/FabledModal";
 import VoteHistoryModal from "@/components/modals/VoteHistoryModal";
 import GameStateModal from "@/components/modals/GameStateModal";
+import WinnerModal from "@/components/modals/WinnerModal";
 
 export default {
   components: {
@@ -71,7 +73,8 @@ export default {
     Menu,
     EditionModal,
     RolesModal,
-    Gradients
+    Gradients,
+    WinnerModal,
   },
   computed: {
     ...mapState(["grimoire", "session"]),
@@ -85,6 +88,12 @@ export default {
   methods: {
     keyup({ key, ctrlKey, metaKey }) {
       if (ctrlKey || metaKey) return;
+      // Check if the active element is an input, textarea, or select
+      const activeElement = document.activeElement;
+      const isInputField = ["INPUT", "TEXTAREA", "SELECT"].includes(
+        activeElement.tagName,
+      );
+      if (isInputField) return;
       switch (key.toLocaleLowerCase()) {
         case "g":
           this.$store.commit("toggleGrimoire");

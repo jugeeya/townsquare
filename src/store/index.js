@@ -112,6 +112,7 @@ export default new Vuex.Store({
       edition: false,
       fabled: false,
       gameState: false,
+      winner: false,
       nightOrder: false,
       reference: false,
       reminder: false,
